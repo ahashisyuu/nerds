@@ -82,6 +82,9 @@ class NERModelEnsemble(NERModel):
         for model in self.models:
             annotated_entities_per_model.append(model.extract(X, y))
 
+        # annotated_entities_per_models:(models_num, samples_num, entities_num)
+        # entity_matrix应为每个样本各模型的预测值，应为(models_num, entities_num)
+
         annotated_documents = []
         for doc_idx, document in enumerate(X):
             entity_matrix = np.array(
